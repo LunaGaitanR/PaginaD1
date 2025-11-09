@@ -2,19 +2,10 @@ name: CI - Unit tests (fork + PR)
 
 on:
 
-  push:
-    branches: ["feature/**", "fix/**", "chore/**", "*" ]
-
   pull_request:
     branches: ["main"]
     types: [opened, synchronize, reopened, ready_for_review]
 
-permissions:
-  contents: read
-
-concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   test:
@@ -39,7 +30,6 @@ jobs:
         with:
           name: surefire-reports
           path: |
-            **/target/surefire-reports/*.xml
             **/target/surefire-reports/*.txt
 
 
